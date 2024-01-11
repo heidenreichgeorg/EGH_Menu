@@ -13,7 +13,9 @@ let currentMenu = [
 
     "RW_Rioja_Faustino_2019.png",
     "RW_Teroldego_2014.png",
-    "RW_ZehnthofFeinherb_2019.png"
+    "RW_ZehnthofFeinherb_2019.png",
+
+    "HV_Linsendal"
 ];
 
 function splitChoice(fileName) {
@@ -50,7 +52,6 @@ function App() {
             <div class="title">
                 <div class="choice">Rotweine</div>
             </div>
-
             <div class="course">
                 <div class="spacer"><img width="10px"  src="./paper.png"></img></div>
                 {
@@ -62,6 +63,23 @@ function App() {
                ):""))
                 }       
             </div>
+
+
+            <div class="title">
+                <div class="choice">Hauptgang - vegan</div>
+            </div>
+            <div class="course">
+                <div class="spacer"><img width="10px"  src="./paper.png"></img></div>
+                {
+                currentMenu.map((item,i)=>(item.substring(0,2)=="HV"? (
+                    <div class="choice"><div class="menu">
+                            <div class="course"><img width="80px" alt="{item}" height="200px" src={"./"+item}></img></div>
+                            <div class="course">{splitChoice(item)}</div>
+                    </div></div>
+               ):""))
+                }       
+            </div>
+
         </div>
     </div>
   );
