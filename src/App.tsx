@@ -1,26 +1,84 @@
 import React from 'react';
 import './App.css';
 
-let currentMenu = [
-    "BI_Aufsesser_Dunkel.png",
-    "BI_Schinner_Edelpils.png",
-    "BI_Steam_Porter.png",
-    "BI_Steam_SummerAle.png",
-    "BI_Veldensteiner_Landbier.png",
-    "BI_Weller_JeanPaul.png",
-    "BI_Aktien_Landbier_Dunkel.png",
-    "BI_Rittmayer_Hallerndorfer_Hausbrauer.png",
-
-    "RW_Rioja_Faustino_2019.png",
-    "RW_Teroldego_2014.png",
-    "RW_ZehnthofFeinherb_2019.png"
-];
-
-function splitChoice(fileName: string) {
-    let aParts= (fileName.split('.')[0]).split('_');
-    aParts.shift();
-    return aParts.join(' ');
+interface MenuItem {
+    type: string,
+    name: string,
+    image: string
 }
+
+interface BeerItem extends MenuItem {
+    type: 'beer'
+}
+
+interface WineItem extends MenuItem {
+    type: 'redwine',
+    year: string
+}
+
+const beerMenu: BeerItem[] = [
+    {
+        type: 'beer',
+        name: 'Aufsesser Dunkel',
+        image: '/thumbnails/aufsesser_dunkel.png'
+    },
+    {
+        type: 'beer',
+        name: 'Schinner Edelpils',
+        image: '/thumbnails/schinner_edelpils.png'
+    },
+    {
+        type: 'beer',
+        name: 'Steam Porter',
+        image: '/thumbnails/steam_porter.png'
+    },
+    {
+        type: 'beer',
+        name: 'Steam SummerAle',
+        image: '/thumbnails/steam_summerAle.png'
+    },
+    {
+        type: 'beer',
+        name: 'Veldensteiner Landbier',
+        image: '/thumbnails/veldensteiner_landbier.png'
+    },
+    {
+        type: 'beer',
+        name: 'Weller JeanPaul',
+        image: '/thumbnails/weller_jeanpaul.png'
+    },
+    {
+        type: 'beer',
+        name: 'Aktien Landbier Dunkel',
+        image: '/thumbnails/aktien_landbier_dunkel.png'
+    },
+    {
+        type: 'beer',
+        name: 'Rittmayer Hallerndorfer Hausbrauer',
+        image: '/thumbnails/rittmayer_hallerndorfer_hausbrauer.png'
+    },
+]
+
+const wineMenu: WineItem[] = [
+    {
+        type: 'redwine',
+        name: 'Rioja Faustino',
+        image: '/thumbnails/rioja_faustino_2019.png',
+        year: '2019'
+    },
+    {
+        type: 'redwine',
+        name: 'Teroldego',
+        image: '/thumbnails/teroldego_2014.png',
+        year: '2014'
+    },
+    {
+        type: 'redwine',
+        name: 'Zehnthof Feinherb',
+        image: '/thumbnails/zehnthof_feinherb_2014.png',
+        year: '2019'
+    }
+]
 
 function App() {
   return (
@@ -38,12 +96,12 @@ function App() {
             <div className="course">
                 <div className="spacer"><img width="10px"  src="./paper.png"></img></div>
                 {
-                currentMenu.map((item,i)=>(item.substring(0,2)=="BI"? (
-                    <div className="choice">
-                            <div className="course"><img width="80px" alt="{item}" height="200px" src={"./"+item}></img></div>
-                            <div className="course">{splitChoice(item)}</div>
-                    </div>
-                ):""))
+                    beerMenu.map((item) => (
+                        <div className="choice">
+                                <div className="course"><img width="80px" alt="{item}" height="200px" src={item.image}></img></div>
+                                <div className="course">{item.name}</div>
+                        </div>
+                    ))
                 }       
             </div>
             
@@ -54,13 +112,13 @@ function App() {
             <div className="course">
                 <div className="spacer"><img width="10px"  src="./paper.png"></img></div>
                 {
-                currentMenu.map(item =>(item.substring(0,2)=="RW"? (
-                    <div className="choice"><div className="menu">
-                            <div className="course"><img width="80px" alt="{item}" height="200px" src={"./"+item}></img></div>
-                            <div className="course">{splitChoice(item)}</div>
-                    </div></div>
-               ):""))
-                }       
+                    wineMenu.map(item => (
+                        <div className="choice"><div className="menu">
+                                <div className="course"><img width="80px" alt="{item}" height="200px" src={item.image}></img></div>
+                                <div className="course">{item.name}</div>
+                        </div></div>
+                    ))
+                }
             </div>
         </div>
     </div>
