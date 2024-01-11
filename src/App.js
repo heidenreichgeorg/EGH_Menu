@@ -1,6 +1,8 @@
 import logo from './favicon.bmp';
 import './App.css';
 
+// created workspace with      npx create-react-app eg_menu
+
 let currentMenu = [
     "BI_Aufsesser_Dunkel.png",
     "BI_Schinner_Edelpils.png",
