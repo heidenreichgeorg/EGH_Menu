@@ -35,7 +35,7 @@ const beerMenu: BeerItem[] = [
     {
         type: 'beer',
         name: 'Steam SummerAle',
-        image: '/thumbnails/steam_summerAle.png'
+        image: '/thumbnails/steam_summerale.png'
     },
     {
         type: 'beer',
@@ -75,7 +75,7 @@ const wineMenu: WineItem[] = [
     {
         type: 'redwine',
         name: 'Zehnthof Feinherb',
-        image: '/thumbnails/zehnthof_feinherb_2014.png',
+        image: '/thumbnails/zehnthof_feinherb_2019.png',
         year: '2019'
     }
 ]
