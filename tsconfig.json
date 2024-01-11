@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es2016",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true,
+        "rootDir": "src",
+        "outDir": "lib",
+        "declaration": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true,
+        "noFallthroughCasesInSwitch": true,
+        "jsx": "react"
+    },
+    "exclude": [
+        "node_modules",
+        "lib"
+    ]
+}
