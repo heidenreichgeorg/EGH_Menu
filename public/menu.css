@@ -1,7 +1,0 @@
-.paper { background-color:#886644; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode'  }
-.menu   { display:table;  }
-.course { display:table-row; font-family:inherit; }
-.caption { display:table-row; height:60px; font-family:inherit;  }
-.title { display:table-row; font-size:2em; width:600px; text-align:center; font-family:inherit; }
-.choice { display:table-cell; float:left; width:150px;  font-weight:bold; font-family:inherit; font-size:0.8em;}
-.spacer { display:table-cell; float:left; width:15px; }
