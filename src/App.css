@@ -34,7 +34,7 @@
 }
 
 
-.paper   { background-color:#886644; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode'  }
+.paper   { background-color:#886644; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode'; height:100%  }
 .menu    { display:table; font-size:1em; }
 
 .course  { display:table-row; font-family:inherit; }
