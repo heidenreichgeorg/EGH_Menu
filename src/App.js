@@ -1,24 +1,36 @@
 import logo from './favicon.bmp';
 import './App.css';
 
+import { useSearchParams } from 'react-router-dom';
+
 // created workspace with      npx create-react-app eg_menu
+// added router with npm install react-router-dom
 
-let currentMenu = [
-    "BI_Aufsesser_Dunkel.png",
+let basic = [
     "BI_Schinner_Edelpils.png",
-    "BI_Steam_Porter.png",
-    "BI_Steam_SummerAle.png",
     "BI_Veldensteiner_Landbier.png",
-    "BI_Weller_JeanPaul.png",
-    "BI_Aktien_Landbier_Dunkel.png",
-    "BI_Rittmayer_Hallerndorfer_Hausbrauer.png",
 
-    "RW_Rioja_Faustino_2019.png",
-    "RW_Teroldego_2014.png",
-    "RW_ZehnthofFeinherb_2019.png",
-
-    "HV_Linsendal"
+    "RW_Rioja_Faustino_2019.png"
 ];
+
+
+
+let events = {
+    "240117": [
+        "BI_Aufsesser_Dunkel.png",
+        "BI_Steam_Porter.png",
+        "BI_Steam_SummerAle.png",
+        "BI_Weller_JeanPaul.png",
+        "BI_Aktien_Landbier_Dunkel.png",
+        "BI_Rittmayer_Hallerndorfer_Hausbrauer.png",
+
+        "RW_Teroldego_2014.png",
+        "RW_Zehnthof_Feinherb_2019.png",
+
+        "MV_Veganes_Linsen_Dal.png"
+        ]
+};
+
 
 function splitChoice(fileName) {
     let aParts= (fileName.split('.')[0]).split('_');
@@ -27,64 +39,105 @@ function splitChoice(fileName) {
 }
 
 function App() {
-  return (
-    <div className="paper">
-        <header className="App-header">
-            <img src={logo}  className="App-logo" alt="logo" />
-        </header>
-                
+    const [searchParams, setSearchParams] = useSearchParams();
+    let date = searchParams.get("date")
+    
+    let currentMenu=basic;
+    if(date && events[date] &&  events[date].length>0) try {
 
-        <div class="menu">
-            <div class="title">
-                <div class="choice">Biere</div>
-            </div>
+        //events[date].forEach((choice)=>{currentMenu.push(choice)})
+        currentMenu=events[date].concat(currentMenu);
 
-            <div class="course">
-                <div class="spacer"><img width="10px"  src="./paper.png"></img></div>
-                {
-                currentMenu.map((item,i)=>(item.substring(0,2)=="BI"? (
-                    <div class="choice">
-                            <div class="course"><img width="80px" alt="{item}" height="200px" src={"./"+item}></img></div>
-                            <div class="course">{splitChoice(item)}</div>
-                    </div>
-                ):""))
-                }       
-            </div>
+    } catch(e) { console.dir("could not add event list")}
+
+    let listBeer = [];  currentMenu.forEach((item,i)=>{if(item.substring(0,2)==="BI") listBeer.push(item); })
+    let listRedWine=[]; currentMenu.forEach((item,i)=>{if(item.substring(0,2)==="RW") listRedWine.push(item); })
+    let listMainVeg=[]; currentMenu.forEach((item,i)=>{if(item.substring(0,2)==="MV") listMainVeg.push(item); })
+
+    return (
+        <div className="paper">
+            <header className="App-header">
+                <img src={logo}  className="App-logo" alt="logo" />
+            </header>
+                    
+
+            <div className="menu">
+
+
             
-            <div class="title">
-                <div class="choice">Rotweine</div>
-            </div>
-            <div class="course">
-                <div class="spacer"><img width="10px"  src="./paper.png"></img></div>
-                {
-                currentMenu.map((item,i)=>(item.substring(0,2)=="RW"? (
-                    <div class="choice"><div class="menu">
-                            <div class="course"><img width="80px" alt="{item}" height="200px" src={"./"+item}></img></div>
-                            <div class="course">{splitChoice(item)}</div>
-                    </div></div>
-               ):""))
-                }       
-            </div>
+
+            {(listRedWine.length>0) ?
+                (
+                    <div>
+                        <div className="title">
+                            <div className="choice">Rotwein</div>
+                        </div>
+                        <div className="course">
+                            <div className="spacer"><img  alt="" width="10px"  src="./paper.png"></img></div>
+                            {
+                            listRedWine.map((item,i)=>
+                            (
+                                <div key={"redwine"+i} className="choice"><div className="menu">
+                                        <div className="course"><img alt="redwine" width="80px"  height="200px" src={"./"+item}></img></div>
+                                        <div className="course">{splitChoice(item)}</div>
+                                </div></div>
+                            ))
+                            }      
+                        </div>
+                    </div>
+                ):""}
 
 
-            <div class="title">
-                <div class="choice">Hauptgang - vegan</div>
-            </div>
-            <div class="course">
-                <div class="spacer"><img width="10px"  src="./paper.png"></img></div>
-                {
-                currentMenu.map((item,i)=>(item.substring(0,2)=="HV"? (
-                    <div class="choice"><div class="menu">
-                            <div class="course"><img width="80px" alt="{item}" height="200px" src={"./"+item}></img></div>
-                            <div class="course">{splitChoice(item)}</div>
-                    </div></div>
-               ):""))
-                }       
-            </div>
 
+                {(listBeer.length>0) ?
+                (
+                    <div>
+                        <div className="title">
+                            <div className="choice">Bier</div>
+                        </div>
+                        <div className="course">
+                            <div className="spacer"><img alt="" width="10px"  src="./paper.png"></img></div>
+                            {
+                            listBeer.map((item,i)=>
+                            (
+                                <div key={"beer"+i} className="choice"><div className="menu">
+                                        <div className="course"><img alt="beer" width="80px" height="200px" src={"./"+item}></img></div>
+                                        <div className="course">{splitChoice(item)}</div>
+                                </div></div>
+                            ))
+                            }      
+                        </div>
+                    </div>
+                ):""}
+
+
+
+
+                {(listMainVeg.length>0) ?
+                (
+                    <div>
+                        <div className="title">
+                            <div className="choice">Hauptgang - vegan</div>
+                        </div>
+                        <div className="course">
+                            <div className="spacer"><img  alt="" width="10px"  src="./paper.png"></img></div>
+                            {
+                            listMainVeg.map((item,i)=>
+                            (
+                                <div key={"vegandish"+i} className="choice"><div className="menu">
+                                        <div className="course"><img alt="main vegan" width="80px" height="200px" src={"./"+item}></img></div>
+                                        <div className="course">{splitChoice(item)}</div>
+                                </div></div>
+                            ))
+                            }      
+                        </div>
+                    </div>
+                ):""}
+
+
+            </div>
         </div>
-    </div>
-  );
+    );
 }
 
 export default App;
