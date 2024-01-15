@@ -7,9 +7,10 @@ import { useSearchParams } from 'react-router-dom';
 // added router with npm install react-router-dom
 
 let basic = [
+    "BI_Aufsesser_Dunkel.png",
+    "BI_Rittmayer_Hallerndorfer_Hausbrauer.png",
     "BI_Schinner_Edelpils.png",
-    "BI_Veldensteiner_Landbier.png",
-
+    "BI_Weller_JeanPaul.png",
     "RW_Rioja_Faustino_2019.png"
 ];
 
@@ -17,12 +18,11 @@ let basic = [
 
 let events = {
     "240117": [
-        "BI_Aufsesser_Dunkel.png",
+        "BI_Aktien_Landbier_Dunkel.png",
+        "BI_Aktien_Zwickl_Kellerbier.png",
         "BI_Steam_Porter.png",
         "BI_Steam_SummerAle.png",
-        "BI_Weller_JeanPaul.png",
-        "BI_Aktien_Landbier_Dunkel.png",
-        "BI_Rittmayer_Hallerndorfer_Hausbrauer.png",
+        "BI_Veldensteiner_Landbier.png",
 
         "RW_Teroldego_2014.png",
         "RW_Zehnthof_Feinherb_2019.png",
