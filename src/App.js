@@ -7,14 +7,11 @@ import { useSearchParams } from 'react-router-dom';
 // added router with         npm install react-router-dom
 // created public project in GitHub
 
-let basic = [   
-    "RW_Rioja_Faustino_2019.png"
-];
 
 let storage = {
     "1": [
         "BI_Steam_Porter.png",
-        "WW_Ipsheim_Düll_Silvaner_2020.png",
+        "WW_Ipsheim_Düll_Silvaner_2020.png"
     ],
 
     "2": [
@@ -29,6 +26,7 @@ let storage = {
 
     "4": [
         "BI_Weller_JeanPaul.png",
+        "RW_Rioja_Faustino_2019.png",
         "BI_Rittmayer_Hallerndorfer_Hausbrauer.png",
     ],
 
@@ -52,8 +50,6 @@ let events = {
     "240118": [
             "SW_Mars_Celebrations.png",
 
-            "WW_Ipsheim_Düll_Silvaner_2020.png",
-
             "MV_Chili_sin_Carne.png"
             ]
     
@@ -73,7 +69,6 @@ function App() {
 
     let currentMenu=[];
     if(date && date.length>0) {
-        currentMenu=basic;
 
         let quantities=Object.keys(storage);
         quantities.forEach((stock)=>{
