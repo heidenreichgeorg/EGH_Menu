@@ -7,16 +7,14 @@ import { useSearchParams } from 'react-router-dom';
 // added router with         npm install react-router-dom
 // created public project in GitHub
 
-let basic = [
-    "BI_Schinner_Edelpils.png",
-    "BI_Aufsesser_Dunkel.png", 
-    "BI_Rittmayer_Hallerndorfer_Hausbrauer.png",
+let basic = [   
     "RW_Rioja_Faustino_2019.png"
 ];
 
-let events = {
+let storage = {
     "1": [
         "BI_Steam_Porter.png",
+        "WW_Ipsheim_Düll_Silvaner_2020.png",
     ],
 
     "2": [
@@ -29,31 +27,37 @@ let events = {
         "BI_Veldensteiner_Landbier.png"
     ],
 
-    "240117": [
+    "4": [
+        "BI_Weller_JeanPaul.png",
+        "BI_Rittmayer_Hallerndorfer_Hausbrauer.png",
+    ],
 
-            "BI_Rittmayer_Hallerndorfer_Kellerbier.png",
-        
+    "6":[
+        "BI_Rittmayer_Hallerndorfer_Kellerbier.png",
+        "BI_Aufsesser_Dunkel.png",
+        "BI_Schinner_Edelpils.png"
+    ]
+}
+
+let events = {
+
+    "240117": [        
             "RW_Teroldego_2014.png",
+
             "RW_Zehnthof_Feinherb_2019.png",
 
             "MV_Veganes_Linsen_Dal.png"
         ],
 
     "240118": [
-
-            "BI_Weller_JeanPaul.png",
-        
             "SW_Mars_Celebrations.png",
+
+            "WW_Ipsheim_Düll_Silvaner_2020.png",
 
             "MV_Chili_sin_Carne.png"
             ]
     
 };
-
-
-let reserve = [
-           
-]
 
 
 function splitChoice(fileName) {
@@ -64,16 +68,36 @@ function splitChoice(fileName) {
 
 function App() {
     const [searchParams, setSearchParams] = useSearchParams();
-    let date = searchParams.get("date")
-    
-    let currentMenu=basic;
-    if(date && events[date] &&  events[date].length>0) try {
+    let date = searchParams.get("date");
+    let stock = searchParams.get("stock");
 
-        currentMenu=events[date].concat(currentMenu);
+    let currentMenu=[];
+    if(date && date.length>0) {
+        currentMenu=basic;
 
-    } catch(e) { console.dir("could not add event list")}
+        let quantities=Object.keys(storage);
+        quantities.forEach((stock)=>{
+            currentMenu=storage[stock].concat(currentMenu);
+        });
 
-    let jCourses = {"BI":"Bier", "RW":"Rotwein", "MV":"Veganes Hauptgericht", "SW":"Süßigkeiten"};
+
+        if(events[date] &&  events[date].length>0) try {
+
+            currentMenu=events[date].concat(currentMenu);
+
+
+        } catch(e) { console.dir("could not add event list")}
+
+    } else if(stock && stock.length>0) {
+        if(storage[stock] &&  storage[stock].length>0) try {
+            
+            currentMenu=storage[stock].concat(currentMenu);
+
+        } catch(e) { console.dir("could not add strage list")}
+
+    }
+
+    let jCourses = {"BI":"Bier", "WW":"Weißwein", "RW":"Rotwein", "MV":"Veganes Hauptgericht", "SW":"Süßigkeiten"};
 
     let jChoices={};
     currentMenu.forEach((item,i)=>{
